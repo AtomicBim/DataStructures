@@ -9,95 +9,39 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Stack<int> stack_1 = new Stack<int>();
+            string[] incomingData = Console.ReadLine().Trim().Split(' ');
 
-            Stack<int> stack_2 = new Stack<int>();
+            int N = Convert.ToInt32(incomingData[0]);//docks
+            int K = Convert.ToInt32(incomingData[1]);//compartment
+            int P = Convert.ToInt32(incomingData[2]);//maximum planted barrels
 
-            Stack<int> stack_3 = new Stack<int>();
-
-            int n = Convert.ToInt32(Console.ReadLine());
-            int[] list = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), Convert.ToInt32);
-
-
-            int res = 0;
-
-            stack_2.Push(list[0]);
-            //модификация исходного массива stack_1
-            for (int i = n - 1; i >= 0; i--)
+            //create stacks
+            Stack<int>[] stacks = new Stack<int>[K];
+            for (int i = 0; i < K; i++)
             {
-                if (list[i] == stack_2.Peek())
-                {
-                    continue;
-                }
-                else
-                {
-                    stack_2.Push(list[i]);
-                }
+                stacks[i] = new Stack<int>();
             }
 
-            //исходный массив в стек stack_2
-            for (int i = n - 1; i >= 0; i--)
+            for (int i = 0; i < N; i++)
             {
-                stack_1.Push(list[i]);
-            }
+                string[] internalData = Console.ReadLine().Trim().Split(' ');
+                char procedure = Convert.ToChar(internalData[0]);
+                int compartment = Convert.ToInt32(internalData[1]);
+                int fuelType = Convert.ToInt32(internalData[0]);
 
-            int stack_2_count = stack_2.Count;
-            int stack_2_item = 0;
-
-            for (int i = 0; i < stack_2_count; i++)
-            {
-                int cnt = 0;
-                if (stack_2.Count != 0)
+                switch (procedure)
                 {
-                    stack_2_item = stack_2.Pop();
-                }
-                else { break; }
+                    case '+':
+                        stacks[i].Push(compartment);
 
-                int stack_1_count = stack_1.Count;
+                        break;
 
-                if (stack_1.Count != 0)
-                {
-                    for (int k = 0; k < stack_1_count; k++)
-                    {
-                        if (stack_2_item == stack_1.Peek())
-                        {
-                            stack_3.Push(stack_1.Pop());
-                        }
-                        else { break; }
-                    }
-                }
+                    case '-':
 
-                foreach (var item in stack_3)
-                {
-                    if (stack_3.Count != 0)
-                    {
-                        if (stack_2_item == item)
-                        {
-                            cnt++;
-                        }
-                        else { break; }
-                    }
-                    else { break; }
-                }
 
-                if (cnt >= 3)
-                {
-                    int stack_3_count = stack_3.Count;
-                    for (int j = 0; j < stack_3_count; j++)
-                    {
-                        if (stack_3.Count != 0)
-                        {
-                            if (stack_2_item == stack_3.Peek())
-                            {
-                                stack_3.Pop();
-                                res++;
-                            }
-                        }
-                        else { break; }
-                    }
+                        break;
                 }
             }
-            Console.WriteLine(res);
         }
     }
 }
