@@ -23,11 +23,25 @@ namespace ConsoleApp1
                         break;
 
                     case "dequeue":
-                        Console.WriteLine(ints.Dequeue());
+                        if (ints.Count == 0)
+                        {
+                            Console.WriteLine("error");
+                        }
+                        else
+                        {
+                            Console.WriteLine(ints.Dequeue());
+                        }
                         break;
 
                     case "peek":
-                        Console.WriteLine(ints.Peek());
+                        if (ints.Count == 0)
+                        {
+                            Console.WriteLine("error");
+                        }
+                        else
+                        {
+                            Console.WriteLine(ints.Peek());
+                        }
                         break;
 
                     case "count":
