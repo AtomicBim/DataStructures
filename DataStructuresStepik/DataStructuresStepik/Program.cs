@@ -9,54 +9,40 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            int n = Convert.ToInt32(Console.ReadLine());
+            Queue<int> ints = new Queue<int>();
 
-            Stack<long> stack = new Stack<long>();
-            List<long> list = new List<long>();
-            List<long> res = new List<long>();
-            long digit = 0;
-
-            for (int i = 0; i < n; i++)
+            while (true)
             {
-                string data = Console.ReadLine();
+                string[] input = Console.ReadLine().Split(' ');
 
-                switch (data[0])
+                switch (input[0])
                 {
-                    case '+':
-                        digit = Convert.ToInt64(data.Substring(1, data.Length - 1));
-                        stack.Push(digit);
-                        if (list.Count == 0)
-                        {
-                            list.Add(digit);
-                        }
-                        else
-                        {
-                            list.Add(list.Last() + digit);
-                        }
+                    case "enqueue":
+                        ints.Enqueue(Convert.ToInt32(input[1]));
+                        Console.WriteLine("ok");
                         break;
 
-                    case '-':
-                        res.Add(stack.Pop());
-                        list.RemoveAt(list.Count - 1);
+                    case "dequeue":
+                        Console.WriteLine(ints.Dequeue());
                         break;
 
-                    case '?':
-                        digit = Convert.ToInt64(data.Substring(1, data.Length - 1));
-                        long peek = list.Last();
-                        if (list.Count == 1 || digit == list.Count)
-                        {
-                            res.Add(peek);
-                        }
-                        else
-                        {
-                            res.Add(peek - list[list.Count - (int)digit - 1]);
-                        }
+                    case "peek":
+                        Console.WriteLine(ints.Peek());
                         break;
+
+                    case "count":
+                        Console.WriteLine(ints.Count());
+                        break;
+
+                    case "clear":
+                        ints.Clear();
+                        Console.WriteLine("ok");
+                        break;
+
+                    case "exit":
+                        Console.WriteLine("bye");
+                        return;
                 }
-            }
-            foreach (var item in res)
-            {
-                Console.WriteLine(item);
             }
         }
     }
