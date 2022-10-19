@@ -9,54 +9,22 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Queue<int> ints = new Queue<int>();
+            HashSet<string> set = new HashSet<string>();
 
-            while (true)
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = 0; i < n; i++)
             {
-                string[] input = Console.ReadLine().Split(' ');
+                set.Add(Console.ReadLine());
+            }
 
-                switch (input[0])
-                {
-                    case "enqueue":
-                        ints.Enqueue(Convert.ToInt32(input[1]));
-                        Console.WriteLine("ok");
-                        break;
-
-                    case "dequeue":
-                        if (ints.Count == 0)
-                        {
-                            Console.WriteLine("error");
-                        }
-                        else
-                        {
-                            Console.WriteLine(ints.Dequeue());
-                        }
-                        break;
-
-                    case "peek":
-                        if (ints.Count == 0)
-                        {
-                            Console.WriteLine("error");
-                        }
-                        else
-                        {
-                            Console.WriteLine(ints.Peek());
-                        }
-                        break;
-
-                    case "count":
-                        Console.WriteLine(ints.Count());
-                        break;
-
-                    case "clear":
-                        ints.Clear();
-                        Console.WriteLine("ok");
-                        break;
-
-                    case "exit":
-                        Console.WriteLine("bye");
-                        return;
-                }
+            if (set.Contains(Console.ReadLine()))
+            {
+                Console.WriteLine("EXIST");
+            }
+            else
+            {
+                Console.WriteLine("OK");
             }
         }
     }
