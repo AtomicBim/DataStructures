@@ -9,23 +9,24 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            HashSet<string> set = new HashSet<string>();
+            HashSet<string> french = new HashSet<string>();
+            HashSet<string> german = new HashSet<string>();
 
-            int n = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < n; i++)
+            int N = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < N; i++)
             {
-                set.Add(Console.ReadLine());
+                french.Add(Console.ReadLine());
             }
 
-            if (set.Contains(Console.ReadLine()))
+            int M = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < M; i++)
             {
-                Console.WriteLine("EXIST");
+                german.Add(Console.ReadLine());
             }
-            else
-            {
-                Console.WriteLine("OK");
-            }
+
+            french.IntersectWith(german);
+
+            Console.WriteLine((N + M - 2 * french.Count != 0) ? (N + M - 2 * french.Count): "NO");
         }
     }
 }
