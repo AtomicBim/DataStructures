@@ -9,26 +9,27 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            HashSet<string> set = new HashSet<string>();
-
             int N = Convert.ToInt32(Console.ReadLine());
-            int M = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i < M; i++)
+
+            HashSet<string> set = new HashSet<string>();
+            HashSet<string> newSet = new HashSet<string>();
+
+            set.Add(Console.ReadLine());
+
+            int sum = 0;
+
+            for (int i = 1; i < N; i++)
             {
-                set.Add(Console.ReadLine());
+                string str = Console.ReadLine();
+                if (set.Contains(str))
+                {
+                    newSet.Add(str);
+                    sum++;
+                }
+                set.Add(str);
             }
 
-            for (int i = 0; i < N - 1; i++)
-            {
-                HashSet<string> set1 = new HashSet<string>();
-                int K = Convert.ToInt32(Console.ReadLine());
-                for (int j = 0; j < K; j++)
-                {
-                    set1.Add(Console.ReadLine());
-                }
-                set.IntersectWith(set1);
-            }
-            Console.WriteLine(set.Count());
+            Console.WriteLine(sum += newSet.Count);
         }
     }
 }
