@@ -11,20 +11,16 @@ namespace ConsoleApp1
         {
             HashSet<string> set = new HashSet<string>();
 
-            int n = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < n; i++)
+            int N = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < N; i++)
             {
                 set.Add(Console.ReadLine());
             }
 
-            if (set.Contains(Console.ReadLine()))
+            int M = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < M; i++)
             {
-                Console.WriteLine("EXIST");
-            }
-            else
-            {
-                Console.WriteLine("OK");
+                Console.WriteLine((set.Contains(Console.ReadLine())?"YES":"NO"));
             }
         }
     }
