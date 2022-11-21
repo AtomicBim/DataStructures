@@ -1,4 +1,7 @@
-﻿namespace MyNamespace
+﻿using System.Collections.Generic;
+using System;
+
+namespace MyNamespace
 {
     public class ThemeDictionary
     {
@@ -8,39 +11,37 @@
     {
         static void Main()
         {
-            var messagesList = new List<string>();
-            var themeDict = new Dictionary<int, string>();
-            var messagesNumber = Convert.ToInt32(Console.ReadLine());
+            var N = Convert.ToInt32(Console.ReadLine());
+            var digits = Array.ConvertAll(Console.ReadLine().Split(' '), Convert.ToInt32);
+            var digitsDict = new Dictionary<int, string>();
 
-            for (int i = 0; i < messagesNumber; i++)
+            digitsDict.Add(digits[0], "");
+
+            string res;
+            for (int i = 1; i < 2 * N; i++)
             {
-                var messageIndex = Convert.ToInt32(Console.ReadLine());
-
-                if (messageIndex == 0)
+                if (!digitsDict.TryGetValue(digits[i], out res))
                 {
-                    var themeTopic = Console.ReadLine();
-                    var themeMessage = Console.ReadLine();
-
-                    messagesList.Add(themeTopic);
-                    themeDict.Add(i + 1, themeTopic);
-                }
-                else
-                {
-                    var answerMessage = Console.ReadLine();
-
-                    foreach (var message in themeDict)
-                    {
-                        if (message.Key == messageIndex)
-                        {
-                            messagesList.Add(message.Value);
-                        }
-                    }
+                    digitsDict.Add(digits[i], "");
                 }
             }
 
-            foreach (var item in messagesList)
+            foreach (var item in digitsDict)
             {
-                Console.WriteLine(item);
+                int counter = 0;
+
+                for (int i = 0; i < 2 * N; i++)
+                {
+                    if (item.Key == digits[i])
+                    {
+                        counter++;
+                        if (counter == N)
+                        {
+                            Console.Write(item.Key);
+                            return;
+                        }
+                    }
+                }
             }
         }
     }
