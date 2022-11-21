@@ -8,7 +8,8 @@
     {
         static void Main()
         {
-            var messagesDict = new Dictionary<int, Dictionary<int, string>>();
+            var messagesList = new List<string>();
+            var themeDict = new Dictionary<int, string>();
             var messagesNumber = Convert.ToInt32(Console.ReadLine());
 
             for (int i = 0; i < messagesNumber; i++)
@@ -20,29 +21,27 @@
                     var themeTopic = Console.ReadLine();
                     var themeMessage = Console.ReadLine();
 
-                    var localDict = new Dictionary<int, string>();
-                    localDict.Add(i + 1, themeTopic);
-                    messagesDict.Add(i + 1, localDict);
+                    messagesList.Add(themeTopic);
+                    themeDict.Add(i + 1, themeTopic);
                 }
                 else
                 {
                     var answerMessage = Console.ReadLine();
 
-                    foreach (var message in messagesDict)
+                    foreach (var message in themeDict)
                     {
                         if (message.Key == messageIndex)
                         {
-                            var localDict = new Dictionary<int, string>();
-                            foreach (var item in message.Value)
-                            {
-                                localDict.Add(messageIndex, item.Value);
-                            }
-                            messagesDict.Add(i + 1, localDict);
+                            messagesList.Add(message.Value);
                         }
                     }
                 }
             }
-            Console.WriteLine("Finish");
+
+            foreach (var item in messagesList)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
