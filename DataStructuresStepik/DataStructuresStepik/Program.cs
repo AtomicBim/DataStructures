@@ -1,9 +1,5 @@
 ﻿namespace MyNamespace
 {
-    public class ThemeDictionary
-    {
-
-    }
     class Program
     {
         static void Main()
