@@ -1,49 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.IsolatedStorage;
-using System.Linq;
-
-namespace ConsoleApp1
+﻿namespace MyNamespace
 {
-    internal class Program
+    public class ThemeDictionary
     {
-        static void Main(string[] args)
+
+    }
+    class Program
+    {
+        static void Main()
         {
-            Queue<int> ints = new Queue<int>();
+            var messagesDict = new Dictionary<int, Dictionary<int, string>>();
+            var messagesNumber = Convert.ToInt32(Console.ReadLine());
 
-            while (true)
+            for (int i = 0; i < messagesNumber; i++)
             {
-                string[] input = Console.ReadLine().Split(' ');
+                var messageIndex = Convert.ToInt32(Console.ReadLine());
 
-                switch (input[0])
+                if (messageIndex == 0)
                 {
-                    case "enqueue":
-                        ints.Enqueue(Convert.ToInt32(input[1]));
-                        Console.WriteLine("ok");
-                        break;
+                    var themeTopic = Console.ReadLine();
+                    var themeMessage = Console.ReadLine();
 
-                    case "dequeue":
-                        Console.WriteLine(ints.Dequeue());
-                        break;
+                    var localDict = new Dictionary<int, string>();
+                    localDict.Add(i + 1, themeTopic);
+                    messagesDict.Add(i + 1, localDict);
+                }
+                else
+                {
+                    var answerMessage = Console.ReadLine();
 
-                    case "peek":
-                        Console.WriteLine(ints.Peek());
-                        break;
-
-                    case "count":
-                        Console.WriteLine(ints.Count());
-                        break;
-
-                    case "clear":
-                        ints.Clear();
-                        Console.WriteLine("ok");
-                        break;
-
-                    case "exit":
-                        Console.WriteLine("bye");
-                        return;
+                    foreach (var message in messagesDict)
+                    {
+                        if (message.Key == messageIndex)
+                        {
+                            var localDict = new Dictionary<int, string>();
+                            foreach (var item in message.Value)
+                            {
+                                localDict.Add(messageIndex, item.Value);
+                            }
+                            messagesDict.Add(i + 1, localDict);
+                        }
+                    }
                 }
             }
+            Console.WriteLine("Finish");
         }
     }
 }
