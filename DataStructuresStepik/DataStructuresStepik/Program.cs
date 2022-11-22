@@ -1,4 +1,9 @@
-﻿namespace MyNamespace
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+
+
+namespace MyNamespace
 {
     class Program
     {
@@ -33,11 +38,9 @@
                     }
                 }
             }
-
-            foreach (var item in messagesList)
-            {
-                Console.WriteLine(item);
-            }
+            Console.WriteLine(messagesList.GroupBy(x => x)
+                          .OrderByDescending(x => x.Count())
+                          .First().Key);
         }
     }
 }
