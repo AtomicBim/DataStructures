@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-
+using System.Text;
 
 namespace MyNamespace
 {
@@ -9,7 +9,6 @@ namespace MyNamespace
     {
         static void Main()
         {
-            var messagesList = new List<string>();
             var themeDict = new Dictionary<int, string>();
             var messagesNumber = Convert.ToInt32(Console.ReadLine());
 
@@ -22,7 +21,6 @@ namespace MyNamespace
                     var themeTopic = Console.ReadLine();
                     var themeMessage = Console.ReadLine();
 
-                    messagesList.Add(themeTopic);
                     themeDict.Add(i + 1, themeTopic);
                 }
                 else
@@ -33,14 +31,19 @@ namespace MyNamespace
                     {
                         if (message.Key == messageIndex)
                         {
-                            messagesList.Add(message.Value);
+                            themeDict.Add(i + 1, message.Value);
                         }
                     }
                 }
             }
-            Console.WriteLine(messagesList.GroupBy(x => x)
-                          .OrderByDescending(x => x.Count())
-                          .First().Key);
+
+            foreach (var item in themeDict)
+            {
+                Console.WriteLine(item.Key + " " + item.Value);
+            }
+            //Console.WriteLine(themeDict.GroupBy(x => x)
+            //              .OrderByDescending(x => x.Count())
+            //              .First().Key);
         }
     }
 }
