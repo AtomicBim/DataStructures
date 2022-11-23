@@ -32,18 +32,15 @@ namespace MyNamespace
                         if (message.Key == messageIndex)
                         {
                             themeDict.Add(i + 1, message.Value);
+                            break;
                         }
                     }
                 }
             }
 
-            foreach (var item in themeDict)
-            {
-                Console.WriteLine(item.Key + " " + item.Value);
-            }
-            //Console.WriteLine(themeDict.GroupBy(x => x)
-            //              .OrderByDescending(x => x.Count())
-            //              .First().Key);
+            Console.WriteLine(themeDict.GroupBy(x => x.Value)
+                          .OrderByDescending(x => x.Count())
+                          .First().Key);
         }
     }
 }
